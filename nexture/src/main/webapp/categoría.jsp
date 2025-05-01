@@ -16,17 +16,19 @@ pageEncoding="UTF-8" import = "com.productos.negocio.*"%>
 		     </header>
 		     <nav>
 		       <a href="consulta.jsp">Ver Productos</a>
-		       <a href="categoria.jsp">Buscar Por Categoria</a>
+		       <a href="reporteCategoria.jsp">Buscar Por Categoria</a>
 		       <a href="login.jsp">Login</a>
 		     </nav>
 		     <div class="agrupar">
-		       <section> 
-		          <%
-		          Categoria cat = new Categoria();
-		          out.print(cat.mostrarCategoria());
-		          %>
-		 
-		 
+		       <section>
+		       	<form action="reporteCategoria.jsp" method="post">
+		       		<h3>Reporte por Categoría</h3> 
+			          <%
+						Categoria cat = new Categoria();
+			          	out.print(cat.mostrarCategoria());
+			          %>
+			          <input type="submit" name="btnEnviar" id="btnEnviar" value="enviar"/>
+		 		</form>
 		      </section>
 		      <aside>
 		        <a href="https://www.linkedin.com/in/jossue-bastidas-667128205?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BM%2FJvAsE7TlySbkJ55DgUIg%3D%3D">Ver mÃ¡s informaciÃ³n sobre los desarrolladores   

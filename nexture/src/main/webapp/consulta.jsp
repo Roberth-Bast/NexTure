@@ -25,10 +25,10 @@
 		     </nav>
 		     <div class="agrupar">
 		       <section> 
-		       <%
-		       Product pro = new Product();
-		       out.print(pro.consultarTodo());
-		       %>
+			       <%
+			       Product pro = new Product();
+			       out.print(pro.consultarTodo());
+			       %>
 		      </section>
 		      <aside>
 		        <a href="https://www.linkedin.com/in/jossue-bastidas-667128205?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BM%2FJvAsE7TlySbkJ55DgUIg%3D%3D">Ver mÃ¡s informaciÃ³n sobre los desarrolladores   

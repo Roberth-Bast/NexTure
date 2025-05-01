@@ -70,6 +70,29 @@ public String consultarTodo() {
 		tabla+="</table>";
 	return tabla;
 }	
+	public String buscarProductoCategoria(int cat)
+	{
+	String sentencia="SELECT nombre_pr, precio_pr FROM tb_productos WHERE id_cat="+cat;
+	Conexion con=new Conexion();
+	ResultSet rs=null;
+	String resultado="<table border=3>";
+	try
+	{
+	rs=con.Consulta(sentencia);
+	while(rs.next())
+	{
+	resultado+="<tr><td>"+ rs.getString(1)+"</td>"
+	 + "<td>"+rs.getDouble(2)+"</td></tr>";
+	}
+	resultado+="</table>";
+	}
+	catch(SQLException e)
+	{
+	System.out.print(e.getMessage());
+	}
+	System.out.print(resultado);
+	return resultado;
+	}
 
 	
 }
