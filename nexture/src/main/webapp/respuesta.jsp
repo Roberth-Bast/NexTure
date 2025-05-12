@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "com.productos.seguridad.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 	<%
 	
 	out.println("Su nombre es: "+request.getParameter("txtNombre") + "<br/>");
-	
+	String nombre = request.getParameter("txtNombre");
 	String cedula = request.getParameter("txtCedula");
 	String ecivil = request.getParameter("cmbECivil");
 	String residencia = request.getParameter("rdResidencia");
@@ -22,6 +22,9 @@
 	String color = request.getParameter("color");
 	String email = request.getParameter("email");
 	String clave = request.getParameter("clave");
+	int eciv = Integer.parseInt(ecivil);
+	Usuario user = new Usuario(2, eciv, nombre, cedula, email, clave);
+	user.ingresarCliente();
 	
 	%>
 	<br/> Su número de cédula es:

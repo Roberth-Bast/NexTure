@@ -47,7 +47,7 @@ public class Product {
 	
 public String consultarTodo() {
 	
-	String sql = "SELECT * FROM tb_productos ORDER BY id_pr";
+	String sql = "SELECT * FROM tb_producto ORDER BY id_pr";
 	String tabla="<table border=2><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th>";
 	ResultSet rs = null;
 	Conexion con = new Conexion();
@@ -72,7 +72,7 @@ public String consultarTodo() {
 }	
 	public String buscarProductoCategoria(int cat)
 	{
-	String sentencia="SELECT nombre_pr, precio_pr FROM tb_productos WHERE id_cat="+cat;
+	String sentencia="SELECT nombre_pr, precio_pr FROM tb_producto WHERE id_cat="+cat;
 	Conexion con=new Conexion();
 	ResultSet rs=null;
 	String resultado="<table border=3>";

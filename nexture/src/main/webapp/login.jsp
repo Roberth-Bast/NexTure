@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>NEXTURES</title>
+		<title>NEXTURE</title>
 		<link href="css/Style.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
@@ -15,15 +15,30 @@
 		     </header>
 		     <nav>
 		       <a href="consulta.jsp">Ver Productos</a>
-		       <a href="categoria.jsp">Buscar Por Categoria</a>
+		       <a href="categoría.jsp">Buscar Por Categoria</a>
 		       <a href="login.jsp">Login</a>
 		     </nav>
 		     <div class="agrupar">
 		       <section> 
 		       <article>
 		       		<h3>Ingresar al sistema</h3>
-		       		<p>Correo Electrónico:<p>
-		       		
+			<form action="validarLogin.jsp" method="post">
+        		<table border="1">
+            		<tr>
+                		<td>Correo electrónico</td>
+                		<td><input type="text" name = "usuario" required /></td>
+            		</tr>
+            		<tr>
+                		<td>Clave</td>
+                		<td><input type="password" id="clave"  name="clave" required/></td>
+            		</tr>
+            		<tr>
+                		<td colspan="2">*campo obligatorio</td> <!-- Para colapsar dos columnas-->
+            		</tr>
+            		<tr> <td><input type="submit" name="btnEnviar" id="btnEnviar" value="Enviar"/></td>
+            	<td><input type="reset" name="btnDelete" id="btnDelete" value="Borrar"/></td></tr>
+        		</table>
+    		</form>
 		        	<a href="registro.jsp">Registrarse</a>
 		       </article>
                

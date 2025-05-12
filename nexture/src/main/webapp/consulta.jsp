@@ -20,7 +20,7 @@
 		     </header>
 		     <nav>
 		       <a href="consulta.jsp">Ver Productos</a>
-		       <a href="categoria.jsp">Buscar Por Categoria</a>
+		       <a href="categoría.jsp">Buscar Por Categoria</a>
 		       <a href="login.jsp">Login</a>
 		     </nav>
 		     <div class="agrupar">

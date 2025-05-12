@@ -28,10 +28,10 @@
                     Estado Civil:
                 </td>
                 <td><select name="cmbECivil">  
-                    <option value="Soltero">Soltero</option> 
-                    <option value="Casado">Casado</option> 
-                    <option value="Divorciado">Divorciado</option> 
-                    <option value="Viudo">Viudo</option> 
+                    <option value="2">Soltero</option> 
+                    <option value="1">Casado</option> 
+                    <option value="3">Divorciado</option> 
+                    <option value="4">Viudo</option> 
                     </select>
                 </td>
             </tr>
