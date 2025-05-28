@@ -10,7 +10,7 @@ pageEncoding="UTF-8" import = "com.productos.negocio.*"%>
 	<body>
 		<main>
 		     <header>
-		       <h1>E-commerce</h1>
+		       <h1>Nexture</h1>
 		       <h2 class="destacado">Moda casual sostenible</h2>
 		       <h4 id="favorito">Consumir la moda de manera consciente e intencionada</h4>
 		     </header>
@@ -21,14 +21,16 @@ pageEncoding="UTF-8" import = "com.productos.negocio.*"%>
 		     </nav>
 		     <div class="agrupar">
 		       <section>
+		       		<form action="reporteCategoria.jsp" method="post">
 		       		<h3>Reporte por Categoría</h3> 
-		          <%
-					Product pro = new Product();
-		          	int cat = Integer.parseInt(request.getParameter("cmbCategoria"));
-		          	String tabla = pro.buscarProductoCategoria(cat);
-		          	out.print(tabla);
-		          %>
-		 
+						<%
+							Product pr = new Product();
+				          	int cat = Integer.parseInt(request.getParameter("cmbCategoria"));
+				          	String tabla = pr.buscarProductoCategoria(cat);
+				          	out.print(tabla);
+						%>
+			          <input type="submit" name="btnEnviar" id="btnEnviar" value="enviar"/>
+		 		</form>
 		 
 		      </section>
 		      <aside>

@@ -24,8 +24,9 @@
 	String color = request.getParameter("color");
 	String email = request.getParameter("txtEmail");
 	String clave = request.getParameter("clave");
+	boolean active = true;
 	int eciv = Integer.parseInt(ecivil);
-	Usuario user = new Usuario(2, eciv, nombre, cedula, email, clave);
+	Usuario user = new Usuario(2, eciv, nombre, cedula, email, clave, active);
 	user.ingresarCliente();
 	
 	%>

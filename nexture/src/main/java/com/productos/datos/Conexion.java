@@ -25,6 +25,7 @@ public class Conexion
 	{
 		return this.cadena;
 	}
+	
 	public Connection getConexion()
 	{ 
 		return this.con; 
@@ -98,5 +99,9 @@ public class Conexion
 	error = ee.getMessage();
 	}
 	return(reg);
+	}
+	public static Connection getCon() {
+		Conexion con = new Conexion();
+		return con.getConexion();
 	}
 }

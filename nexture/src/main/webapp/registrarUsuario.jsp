@@ -19,8 +19,8 @@
  			<h4 id="favorito" class="romper-float">The new way to buy and fill your wardrobe</h4>
  		</header>
 	 		<nav>
- 				<a class= "active" href="consulta.jsp" >Gestion de Usuario</a>
- 				<a class= "active" href="categoría.jsp">Bitácora</a>
+ 				<a class= "active" href="gestionar_usuarios.jsp" >Gestion de Usuario</a>
+ 				<a class= "active" href="bitacora	.jsp">Bitácora</a>
  				<a class= "active" href="login.jsp">CerrarSesión</a>
  			</nav>
  		<div class="agrupar">
@@ -73,6 +73,8 @@
             <tr> <td><input type="submit" name="btnEnviar" id="btnEnviar" value="Guardar"/></td>
             <td><input type="reset" name="btnDelete" id="btnDelete" value="Borrar"/></td></tr>
         </table>
+         	<div>
+ 				
     </form>
  			</section>
  			<aside>
@@ -81,6 +83,7 @@
  				<iframe class="mapa" src="https://www.google.com/maps/d/embed?mid=1r5aik6CGM2FLfkW0Sdw2o5UlMHQytnQ&ehbc=2E312F" width="210" height="230" ></iframe>
  			</aside>
  		</div>
+
 	<footer>
  		<ul>
  			<li><a href="https://www.facebook.com/jossue.bast/">

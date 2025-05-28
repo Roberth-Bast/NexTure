@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Confirmacion</title>
 </head>
 <body>
 	<h3>Datos del Nuevo Empleado</h3>

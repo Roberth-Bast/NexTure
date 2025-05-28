@@ -319,6 +319,34 @@ public String consultarTodo() {
 	    }
 	    return result;
     }
+    public Product obtenerProducto(int id) {
+        String sql = "SELECT * FROM tb_producto WHERE id_pr = " + id;
+        Conexion con = new Conexion();
+        ResultSet rs = con.Consulta(sql);
+        try {
+            if (rs.next()) {
+                Product producto = new Product();
+                producto.setId(rs.getInt("id_pr"));
+                producto.setId_cat(rs.getInt("id_cat"));
+                producto.setNombre(rs.getString("nombre_pr"));
+                producto.setCantidad(rs.getInt("cantidad_pr"));
+                producto.setPrecio(rs.getFloat("precio_pr"));
+                return producto;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    // Método para actualizar el stock después de una compra
+    public boolean actualizarStock(int idProducto, int cantidadVendida) {
+        String sql = "UPDATE tb_producto SET cantidad_pr = cantidad_pr - " + cantidadVendida + 
+                    " WHERE id_pr = " + idProducto;
+        Conexion con = new Conexion();
+        String resultado = con.Ejecutar(sql);
+        return resultado.equals("Ok");
+    }
     
 }
 	

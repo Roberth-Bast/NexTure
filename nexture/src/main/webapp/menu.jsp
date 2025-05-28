@@ -10,16 +10,22 @@
 </head>
 <body>
 	<main>
-		<%
-		String usuario;
-		HttpSession sesion = request.getSession();
-		if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
-		{
-		%>
+		<header>
+		<div class = "lgback" >
+		<a href="http://localhost:8080/nexture/index.jsp"><img class="alinear-centro" src="images/Nexture_logo.png" width="200" height="200"></a>
+		</div>
+		</header>
+
 		<nav>
-			<jsp:forward page="login.jsp">
-		 	<jsp:param name="error" value="Debe registrarse en el sistema."/>
-		 	</jsp:forward>
+			<%
+				String usuario;
+				HttpSession sesion = request.getSession();
+				if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
+				{
+			%>
+				<jsp:forward page="login.jsp">
+			 	<jsp:param name="error" value="Debe registrarse en el sistema."/>
+			 	</jsp:forward>
 		 	<%
 			 	}
 			 	else

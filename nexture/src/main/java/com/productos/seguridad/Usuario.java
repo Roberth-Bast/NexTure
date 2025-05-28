@@ -1,8 +1,12 @@
 package com.productos.seguridad;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.productos.datos.Conexion;
 
@@ -15,6 +19,7 @@ public class Usuario {
 	private String clave;
 	private String cedula;
 	private String claveActual;
+	private boolean active;
 	
 	public String getClaveActual() {
 		return claveActual;
@@ -33,7 +38,8 @@ public class Usuario {
 
 	}
 	
-	public Usuario(Integer perfil, int estadoCivil,  String nombre, String cedula, String correo, String clave) {
+	public Usuario(Integer perfil, int estadoCivil,  String nombre, 
+			String cedula, String correo, String clave, boolean active) {
 		super();
 		this.nombre = nombre;
 		this.perfil = perfil;
@@ -41,9 +47,18 @@ public class Usuario {
 		this.correo = correo;
 		this.clave = clave;
 		this.cedula = cedula;
+		this.active = active;
 	}
 	
 	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public String getCedula() {
 		return cedula;
 	}
@@ -314,8 +329,90 @@ public class Usuario {
 		}
 		return usuario;
 	}
-	
-	
-	
 
+	public static List<Usuario> obtenerTodosUsuarios() {
+	    List<Usuario> usuarios = new ArrayList<>();
+	    String sql = "SELECT * FROM tb_usuario";
+	    
+	    try (Connection conn = Conexion.getCon();
+	         Statement stmt = conn.createStatement();
+	         ResultSet rs = stmt.executeQuery(sql)) {
+	        
+	        while(rs.next()) {
+	            Usuario usuario = new Usuario();
+	            usuario.setId(rs.getInt("id_us"));
+	            usuario.setPerfil(rs.getInt("id_per"));
+	            usuario.setEstadoCivil(rs.getInt("id_est"));
+	            usuario.setCedula(rs.getString("cedula_us"));
+	            usuario.setNombre(rs.getString("nombre_us"));
+	            usuario.setCorreo(rs.getString("correo_us"));
+	            usuario.setActive(rs.getBoolean("estado")); 
+	            usuarios.add(usuario);
+	        }
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	    return usuarios;
+	}
+	public static boolean cambiarEstadoUsuario(int idUsuario, boolean activo) {
+	    String sql = "UPDATE tb_usuario SET estado = ? WHERE id_us = ?";
+	    
+	    try (Connection conn = Conexion.getCon();
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        
+	        pstmt.setBoolean(1, activo);
+	        pstmt.setInt(2, idUsuario);
+	        
+	        return pstmt.executeUpdate() > 0;
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+	public static boolean actualizarUsuario(Usuario usuario) {
+	    String sql = "UPDATE tb_usuario SET id_per = ?, id_est = ?, nombre_us = ?, " +
+	                 "cedula_us = ?, correo_us = ? WHERE id_us = ?";
+	    
+	    try (Connection conn = Conexion.getCon();
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        
+	        pstmt.setInt(1, usuario.getPerfil());
+	        pstmt.setInt(2, usuario.getEstadoCivil());
+	        pstmt.setString(3, usuario.getNombre());
+	        pstmt.setString(4, usuario.getCedula());
+	        pstmt.setString(5, usuario.getCorreo());
+	        pstmt.setInt(6, usuario.getId());
+	        
+	        return pstmt.executeUpdate() > 0;
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+	
+	public Usuario buscarUsuarioPorCorreo(String correo) {
+	    Usuario usuario = null;
+	    String sql = "SELECT * FROM tb_usuario WHERE correo_us = ?";
+	    
+	    try (Connection conn = Conexion.getCon();
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        
+	        pstmt.setString(1, correo);
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if(rs.next()) {
+	                usuario = new Usuario();
+	                usuario.setId(rs.getInt("id_us"));
+	                usuario.setPerfil(rs.getInt("id_per"));
+	                usuario.setEstadoCivil(rs.getInt("id_est"));
+	                usuario.setCedula(rs.getString("cedula_us"));
+	                usuario.setNombre(rs.getString("nombre_us"));
+	                usuario.setCorreo(rs.getString("correo_us"));
+	                usuario.setActive(rs.getBoolean("estado"));
+	            }
+	        }
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	    return usuario;
+	}
 }

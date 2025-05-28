@@ -19,9 +19,10 @@
 	String ecivil = request.getParameter("cmbECivil");
 	String email = request.getParameter("txtEmail");
 	String clave = "653421" ;
+	boolean active = true;
 	int per = Integer.parseInt(perfil);
 	int eciv = Integer.parseInt(ecivil);
-	Usuario user = new Usuario(per, eciv, nombre, cedula, email, clave);
+	Usuario user = new Usuario(per, eciv, nombre, cedula, email, clave, active);
 	user.ingresarCliente();
 	
 	%>

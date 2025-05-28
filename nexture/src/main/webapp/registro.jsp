@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <td>Mes y Año de Nacimiento</td>
-                <td><input type="month" name="fecha"/>*</td>
+                <td><input type="month" name="fecha" required/>*</td>
             </tr>
             <tr>
                 <td>Color favorito</td>
@@ -66,7 +66,9 @@
             </tr>
             <tr>
                 <td>Clave</td>
-                <td><input type="password" id="password"  name="txtClave" required/>*</td>
+                <td><input type="password" id="password"  name="txtClave" pattern=".{8,}"  
+					title="La contraseña debe tener al menos 8 caracteres"
+					required/>*</td>
             </tr>
             <tr>
                 <td colspan="2">*campo obligatorio</td> <!-- Para colapsar dos columnas-->
