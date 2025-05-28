@@ -4,17 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<lang = esp>
+<title>NexTure</title>
 <link href= "css/Style.css" rel= "stylesheet" type= "text/css">
 </head>
 <body>
-	<%
-		 String usuario;
-		 HttpSession sesion = request.getSession();
-		 if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
-		 {
-	%>
 	<main>
+		<%
+		String usuario;
+		HttpSession sesion = request.getSession();
+		if (sesion.getAttribute("usuario") == null) //Se verifica si existe la variable
+		{
+		%>
 		<nav>
 			<jsp:forward page="login.jsp">
 		 	<jsp:param name="error" value="Debe registrarse en el sistema."/>

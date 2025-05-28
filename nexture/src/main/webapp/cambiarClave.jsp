@@ -25,7 +25,7 @@
  		<div class="agrupar">
  			<section>
  				<h3>Cambio de Clave</h3>
-				<form action="respuesta.jsp" method="post">
+				<form action="responseClave.jsp" method="post">
         	<table border="1">
             	<tr> 
 	                <td>

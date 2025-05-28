@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>Datos del Nuevo Empleado</h3>
+	<h3>Cambio de clave</h3>
 	<p>
 	
 	<%

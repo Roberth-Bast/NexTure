@@ -2,6 +2,7 @@ package com.productos.seguridad;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.productos.datos.Conexion;
 
@@ -210,31 +211,109 @@ public class Usuario {
 		return result;
 	}
 	
-	public static boolean verificarFortalezaClave(String clave) {
-        if (clave == null) return false;
-        
-        // Expresión regular para validar: 8 caracteres, al menos 1 mayúscula, 1 número y 1 carácter especial
-        String regex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-        return clave.matches(regex);
-    }
-
-    // Verifica si la clave no está vacía y tiene longitud mínima de 6 caracteres
-    public static boolean verificarClaveValida(String clave) {
-        return clave != null && clave.length() >= 6;
-    }
-
-    // 
-    public static boolean clavesCoinciden(String clave, String repetirClave) {
-        if (clave == null || repetirClave == null) return false;
-        return clave.equals(repetirClave);
-    }
-
-    public static boolean cambiarClave(String nuevaClave, String confirmacionClave) {
-        if (!verificarFortalezaClave(nuevaClave)) return false;
-        if (!clavesCoinciden(nuevaClave, confirmacionClave)) return false;
-        //claveActual = nuevaClave; // Actualizar la clave almacenada
-        return true;
-    }
+	public Boolean verificarClave(String nclave) {
+		String result="";
+		Boolean respuesta=false;
+		Conexion con=new Conexion();
+		PreparedStatement pr=null;
+		String sql="SELECT * FROM tb_usuario WHERE clave_us=?";
+		try{
+			pr=con.getConexion().prepareStatement(sql);
+			pr.setString(1, nclave);
+			ResultSet rs=pr.executeQuery();
+			if(rs.next()){
+				System.out.println("Clave correcta");
+				respuesta=true;
+			}else{
+				System.out.println("Clave incorrecta");
+				respuesta=false;
+			}
+		}catch(Exception ex){
+			result=ex.getMessage();
+			System.out.print(result);
+		}finally{
+			try{
+				pr.close();
+			 	con.getConexion().close();
+			}catch(Exception ex){
+				System.out.print(ex.getMessage());
+			}
+		}
+		return respuesta;
+	}
+	
+	public Boolean coincidirClave(String nclave, String nrepetir) {
+		Boolean respuesta=false;
+		if(nclave.equals(nrepetir)){
+			System.out.println("Coinciden");
+			respuesta=true;
+		}else{
+			System.out.println("No coinciden");
+			respuesta=false;
+		}
+		return respuesta;
+	}
+	
+	public Boolean cambiarClave(String ncorreo, String nclave) {
+		String result="";
+		Boolean respuesta=false;
+		Conexion con=new Conexion();
+		PreparedStatement pr=null;
+		String sql="UPDATE tb_usuario SET clave_us=? WHERE correo_us=?";
+		try{
+			pr=con.getConexion().prepareStatement(sql);
+			pr.setString(1, nclave);
+			pr.setString(2, ncorreo);
+			if(pr.executeUpdate()==1){
+				System.out.println("Cambio correcto");
+				respuesta=true;
+			}else{
+				System.out.println("Error en cambio");
+				respuesta=false;
+			}
+		}catch(Exception ex){
+			result=ex.getMessage();
+			System.out.print(result);
+		}finally{
+			try{
+				pr.close();
+			 	con.getConexion().close();
+			}catch(Exception ex){
+				System.out.print(ex.getMessage());
+			}
+		}
+		return respuesta;
+	}
+	public Usuario buscarUsuario(String nombre) {
+		Usuario usuario = null;
+		String sql = "SELECT * FROM tb_usuario WHERE nombre_us = ?";
+		Conexion con = new Conexion();
+		PreparedStatement pr = null;
+		ResultSet rs = null;
+		try {
+			pr = con.getConexion().prepareStatement(sql);
+			pr.setString(1, nombre);
+			rs = pr.executeQuery();
+			if (rs.next()) {
+				usuario = new Usuario();
+				usuario.setNombre(rs.getString("nombre_us"));
+				usuario.setCedula(rs.getString("cedula_us"));
+				usuario.setCorreo(rs.getString("correo_us"));
+				usuario.setClave(rs.getString("clave_us"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pr != null) pr.close();
+				con.getConexion().close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return usuario;
+	}
 	
 	
 	

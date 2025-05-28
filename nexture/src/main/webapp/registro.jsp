@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Nuevo Clientes</title>
+    <link href= "css/Style.css" rel="stylesheet" type= "text/css">
 </head>
 <body>
+	<div class="agrupar">
+ 		<section>
     <h3>Registro Nuevo Cliente</h3>
     <form action="respuesta.jsp" method="post">
         <table border="1">
@@ -72,5 +75,7 @@
             <td><input type="reset" name="btnDelete" id="btnDelete" value="Borrar"/></td></tr>
         </table>
     </form>
+    	</section>
+    		</div>     	
 </body>
 </html>

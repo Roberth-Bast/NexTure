@@ -13,7 +13,7 @@ public class Categoria {
 	
 	public String mostrarCategoria()
 	{
-	String combo="<select name=cmbCategoria>";
+	String combo="<select class=form-select name=cmbCategoria>";
 	String sql="SELECT * FROM tb_categoria";
 	ResultSet rs=null;
 	Conexion con=new Conexion();

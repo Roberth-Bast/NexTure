@@ -5,11 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Nuevo Cliente</title>
+<link href= "css/Style.css" rel="stylesheet" type= "text/css">
 </head>
 <body>
+	<div class="agrupar">
+ 		<section>
 	<h3>Datos del Nuevo Cliente</h3>
 	<p>
-	
 	<%
 	
 	out.println("Su nombre es: "+request.getParameter("txtNombre") + "<br/>");
@@ -20,7 +22,7 @@
 	String foto = request.getParameter("fileFoto");
 	String fecha = request.getParameter("fecha");
 	String color = request.getParameter("color");
-	String email = request.getParameter("email");
+	String email = request.getParameter("txtEmail");
 	String clave = request.getParameter("clave");
 	int eciv = Integer.parseInt(ecivil);
 	Usuario user = new Usuario(2, eciv, nombre, cedula, email, clave);
@@ -42,5 +44,7 @@
 	<br/> Su correo electrónico es:
 	<em><%=email %></em>
 	</p>
+	</section>
+	</div>
 </body>
 </html>
